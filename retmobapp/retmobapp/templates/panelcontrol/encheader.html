@@ -1,0 +1,103 @@
+{% extends "panelcontrol/layout.html" %}
+
+{% block page_header %}
+<!-- bootstrap-fileinput -->
+<link href="../static/assets/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="../static/assets/themes/explorer-fa/theme.css" media="all" rel="stylesheet" type="text/css"/>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="../static/assets/js/plugins/sortable.js" type="text/javascript"></script>
+<script src="../static/assets/js/fileinput.js" type="text/javascript"></script>
+<script src="../static/assets/js/locales/fr.js" type="text/javascript"></script>
+<script src="../static/assets/js/locales/es.js" type="text/javascript"></script>
+<script src="../static/assets/themes/explorer-fa/theme.js" type="text/javascript"></script>
+<script src="../static/assets/themes/fa/theme.js" type="text/javascript"></script>
+<!-- foundation -->
+
+
+{% endblock %}
+
+
+{% block pwrapper %}
+
+
+
+
+
+    <div id="kv-error-2" style="margin-top:10px;display:none"></div>
+    <div id="kv-success-2" class="alert alert-success fade in" style="margin-top:10px;display:none"></div>
+
+		<div class="header"> 	
+		</div>
+            <div id="page-inner">
+
+                <div class="card">
+                    <div class="card-action">
+                        选择一个文件类型
+                    </div>
+
+                    <div class="card-content">
+                        <select name="dataTables-example_length" aria-controls="dataTables-example" class="form-control input-sm">
+                            <option value="10">ZIP</option>
+                            <option value="25">IPA</option>
+                            <option value="50">APK</option>
+                            <!-- <option value="100"></option> -->
+                        </select> 
+                    </div>
+                    
+                <div class="card-action">
+                        上传压缩文件
+                </div>        
+                    <div class="card-content"> 
+
+                        <input id="input-705" name="kartik-input-705" type="file" class="file-loading">
+                        <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
+                        <script>
+                            var $input = $("#input-705");
+                            $input.fileinput({
+                            uploadUrl: "./upload", // 服务器接收上传文件的方法
+                            allowedFileExtensions: ['jpg', 'png', 'gif','zip','ipa','apk'],
+                            uploadAsync: false,
+                            showUpload: true, // 隐藏上传按钮
+                            showRemove: true, // 隐藏移除按钮
+                            minFileCount: 1,
+                            maxFileCount: 5,
+                            showPreview: true,
+                            uploadExtraData: {
+                                    'csrf_token': '{{csrf_token()}}'
+                            },
+                        }).on('filebatchpreupload', function(event, data, id, index) {
+                            $('#kv-success-2').html('<h4>上传状态</h4><ul></ul>').hide();
+                        }).on('filebatchuploadsuccess', function(event, data) {
+                            var obj = data.response;
+                            if (obj['ok'] === true) {
+                                // alert("true");
+                                $("#btn_start").attr("disabled", false);    
+                            }else{
+                                // alert("false");
+                                $("#btn_start").attr("disabled", true);    
+                            }
+
+                            var out = '';
+                            $.each(data.files, function(key, file) {
+                                var fname = file.name;
+                                out = out + '<li>' + '上传文件 # ' + (key + 1) + ' - '  +  fname + ' 成功。' + '</li>';
+                            });
+                            $('#kv-success-2 ul').append(out);
+                            $('#kv-success-2').fadeIn('slow');
+                         });
+                        </script>  
+                    </div>
+
+                    <div class="card-action">开始分析</div>
+                    <div class="card-content">
+                        <a id="btn_start" class="waves-effect waves-light btn-large" disabled="true"><i class="material-icons left">cloud</i>Start</a>
+                    </div>
+                </div>
+
+            	<!-- Footer -->
+				<footer><p>All right reserved. Template by: <a href="http://www.mycodes.net/">WebThemez.com</a></p>
+				</footer>
+				<!-- Footer -->
+            </div>
+            <!-- /. PAGE INNER  -->
+{% endblock %}
