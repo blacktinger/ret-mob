@@ -48,12 +48,15 @@ def register_extensions(app):
     return None
 
 
+#most important 
 def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(public.views.blueprint)
     app.register_blueprint(user.views.blueprint)
     app.register_blueprint(panelcontrol.panel.views.blueprint)
     app.register_blueprint(panelcontrol.ui_elements.views.blueprint)
+    app.register_blueprint(panelcontrol.mobconnect.views.blueprint)
+
     return None
 
 

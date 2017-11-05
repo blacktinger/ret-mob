@@ -1,0 +1,140 @@
+{% extends "panelcontrol/layout.html" %}
+{% block pwrapper %}
+
+<div class="header"> 
+	<h1 class="page-header">
+		连接设备					  
+	</h1>
+	<ol class="breadcrumb">
+		<li><a id="repl" href="javascript:void(0)" onclick="repl()">
+			<i class="material-icons dp48">replay</i>
+			<span>refresh</span>
+		</a></li>
+	</ol>
+	<script type="text/javascript">
+	function repl(){
+		alert('you click me ');
+		$.post("replay",
+		{
+			'csrf_token': '{{csrf_token()}}'
+		},
+		function(data,status){
+			alert("Data: " + data['statu'] + "\nStatus: " + status);
+		});
+	};
+	</script> 		
+</div>
+
+
+<div id="page-inner"> 
+	<div class="card">
+		<!-- <div class="card-action"></div> -->
+		<div class="card-content">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="row">
+						<img src="../static/assets/img/ipad1_white.png" >
+					</div>
+					<div class="row">some button of </div>
+				</div>
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-action">
+							configure information
+						</div>
+						<!-- start configuration -->
+						<div class="card-content">
+							<div class="row">
+								<div class="col-md-4">
+									<label for="title1">连接状态:	</label>
+								</div>
+								<div class="col-md-4">4</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-4">
+									<label for="title2">设备名称:	</label>
+								</div>
+								<div class="col-md-4">4</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">									
+									<label for="title3">设备编译版本:</label>
+								</div>
+																<div class="col-md-4">4</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<label for="title4">系统名称:</label>
+								</div>
+																<div class="col-md-4">4</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<label for="title5">设备类别:	</label>
+								</div>
+																<div class="col-md-4">4</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<label for="title1">系统版本号:</label>
+								</div>
+																<div class="col-md-4">4</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<label for="title1">以太网MAC地址:</label>
+								</div>
+																<div class="col-md-4">4</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<label for="title1">SN:	</label>
+
+								</div>
+																<div class="col-md-4">4</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<label for="title1">UDID:	</label>
+
+								</div>
+																<div class="col-md-4">4</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<label for="title1">WIFI MAC地址:</label>
+
+								</div>
+																<div class="col-md-4">4</div>
+
+							</div>
+						</div>
+						<!-- end configuration -->
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- end card -->
+
+	<!-- Row -->
+
+
+</div>
+
+
+</div>
+
+
+
+{% endblock %}
