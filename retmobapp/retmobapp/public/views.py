@@ -67,4 +67,32 @@ def panel():
     return render_template('panelcontrol/encheader.html')
 
 
+@blueprint.route('/table/')
+def table():
+    return render_template('panelcontrol/table.html')
 
+@blueprint.route('/chart/')
+def chart():
+    return render_template('panelcontrol/chart.html')
+
+@blueprint.route('/tab-panel/')
+def tabpanel():
+    return render_template('panelcontrol/tab-panel.html')
+
+@blueprint.route('/form/')
+def form():
+    return render_template('panelcontrol/form.html')    
+
+@blueprint.route('/ui-elements/')
+def ui_elements():
+    """UI-ELEMENTS MEMBER"""
+    return render_template('panelcontrol/ui-elements.html')
+
+
+@blueprint.route('/empty')
+def empty():
+    return render_template('panelcontrol/empty.html')
+
+@blueprint.route('/tasklist')
+def tasklist():
+    return render_template('panelcontrol/tasklist.html')

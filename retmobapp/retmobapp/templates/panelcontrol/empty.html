@@ -23,6 +23,76 @@
                          <div class="card-content"> 
 						 <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                            <div class="clearBoth"><br/></div>
+
+                           <script>
+$(function(){
+    $("table tr").click(function(){
+        var input = $(this).find("input[type=checkbox]");//获取checkbox
+        //判断当前checkbox是否为选中状态
+        if(input.attr("checked")){
+            input.attr("checked",false);
+        }else{
+            input.attr("checked",true);
+        }
+         
+    }) 
+})
+</script>
+<table >  
+    <thead>  
+        <tr>  
+            <td>选择</td>  
+            <td>姓名</td>  
+            <td>日期</td>  
+            <td>金额</td>  
+            <td>说明</td>  
+        </tr>  
+    </thead>  
+    <tbody>  
+        <tr>  
+            <td><input type="checkbox"/></td>  
+            <td>张三</td>  
+            <td>2009-01-02</td>  
+            <td>12.35</td>  
+            <td>A股</td>  
+        </tr>  
+        <tr>  
+            <td><input type="checkbox"/></td>  
+            <td>张三</td>  
+            <td>2009-02-02</td>  
+            <td>122.35</td>  
+            <td>B股</td>  
+        </tr>  
+        <tr>  
+            <td><input type="checkbox"/></td>  
+            <td>张三</td>  
+            <td>2009-03-02</td>  
+            <td>132.35</td>  
+            <td>现金</td>  
+        </tr>  
+        <tr>  
+            <td><input type="checkbox"/></td>  
+            <td>张三</td>  
+            <td>2009-04-02</td>  
+            <td>142.35</td>  
+            <td>港股</td>  
+        </tr>  
+        <tr>  
+            <td><input type="checkbox"/></td>  
+            <td>张三</td>  
+            <td>2009-05-02</td>  
+            <td>152.35</td>  
+            <td>保险</td>  
+        </tr>  
+        <tr>  
+            <td><input type="checkbox"/></td>  
+            <td>张三</td>  
+            <td>2009-06-02</td>  
+            <td>162.35</td>  
+            <td>基金</td>  
+        </tr>  
+    </tbody>  
+</table>
 						    
 						 </div>
 						 </div>

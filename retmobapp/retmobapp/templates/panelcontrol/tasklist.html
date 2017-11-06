@@ -1,0 +1,97 @@
+{% extends "panelcontrol/layout.html" %}
+
+{% block page_header %}
+<meta charset="UTF-8" />  
+<link rel="stylesheet" type="text/css" href="/static/assets/css/pager.css">
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script> 
+<script type="text/javascript" src="/static/assets/js/pager.js"></script>
+{% endblock %}
+
+{% block pwrapper %}
+
+
+
+		  <div class="header"> 
+                        <h1 class="page-header">
+                            Empty Page <small>Create new page.</small>
+                        </h1>
+						<ol class="breadcrumb">
+					  <li><a href="#">Home</a></li>
+					  <li><a href="#">Empty</a></li>
+					  <li class="active">Data</li>
+					</ol> 
+									
+		</div>
+            <div id="page-inner"> 
+			
+                <!--    Hover Rows  -->
+                    <div class="card">
+                        <div class="card-action">
+                            Hover Rows
+                        </div>
+                        <div class="card-content">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>task_id</th>
+                                            <th>file_name</th>
+                                            <th>plantform/type</th>
+                                            <th>task_process</th>
+                                            <th>action</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                            <td>
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+<div>
+    <ul class="pagination" id="page1">
+    </ul>
+    <div class="pageJump">
+        <span>跳转到</span>
+        <input type="text" style="width:10%;height:0%" />
+        <span>页</span>
+        <button type="button" class="button">确定</button>
+    </div>
+    </div>
+    <script>
+        Page({
+            num:6,                  //页码数
+            startnum:3,             //指定页码
+            elem:$('#page1'),       //指定的元素
+            callback:function(n){   //回调函数
+                console.log(n);
+            }
+        });
+    </script>
+                    <!-- End  Hover Rows  -->                    
+			</div>
+
+             <!-- /. PAGE INNER  -->
+{% endblock %}

@@ -37,3 +37,6 @@ def upload():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return jsonify({'ok':True})
     return abort(403)
+
+
+
