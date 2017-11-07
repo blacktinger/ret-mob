@@ -3,6 +3,7 @@
 from flask import Flask, render_template
 
 from retmobapp import commands, public, user
+from retmobapp.panelcontrol import tasklist
 from retmobapp import panelcontrol
 from retmobapp.extensions import bcrypt, cache, csrf_protect, db, debug_toolbar, login_manager, migrate, webpack
 from retmobapp.settings import ProdConfig
@@ -78,7 +79,9 @@ def register_shellcontext(app):
         """Shell context objects."""
         return {
             'db': db,
-            'User': user.models.User}
+            'User': user.models.User,
+            'Tasks':tasklist.models.Tasks
+            }
 
     app.shell_context_processor(shell_context)
 
