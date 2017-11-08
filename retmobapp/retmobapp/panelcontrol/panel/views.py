@@ -35,6 +35,8 @@ def upload():
             filename = secure_filename(file.filename)
             print os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            #上传成功
+            
             return jsonify({'ok':True})
     return abort(403)
 
