@@ -20,24 +20,24 @@ def panel():
     form = PanelForms(request.form)
     return render_template('panelcontrol/encheader.html',form=form)
 
-def allowed_file(filename):
-    ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-    return '.' in filename and \
-        filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+# def allowed_file(self,filename):
+#     ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+#     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
            
 @blueprint.route('/upload', methods=['POST'])
 def upload():
     print "a===============",os.getcwd()
-    if request.method == 'POST':
-        file = request.files['kartik-input-705']
-        print file
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            print os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            #上传成功
-            
-            return jsonify({'ok':True})
+    ufile = UFileForms(request)
+    return ufile.validate()
+    # if request.method == 'POST':
+    #     file = request.files['kartik-input-705']
+    #     print file
+    #     if file and allowed_file(file.filename):
+    #         filename = secure_filename(file.filename)
+    #         print os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    #         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    #         #上传成功
+    #         return jsonify({'ok':True})
     return abort(403)
 
 
