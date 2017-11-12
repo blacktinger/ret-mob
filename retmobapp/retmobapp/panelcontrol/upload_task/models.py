@@ -6,7 +6,7 @@ from retmobapp.database import Column, Model, SurrogatePK, db, reference_col, re
 from retmobapp.extensions import bcrypt
 
 
-class FileInfo(SurrogatePK, Model):
+class FileMap(SurrogatePK, Model):
 	"""docstring for Tasks"""
 	__tablename__ = 'filemap'
 	file_url = Column(db.String(128), nullable=False)

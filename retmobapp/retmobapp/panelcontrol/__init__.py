@@ -1,1 +1,1 @@
-from . import panel, ui_elements, mobconnect
+from . import upload_task, ui_elements, mobconnect

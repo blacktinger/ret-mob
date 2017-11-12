@@ -62,9 +62,9 @@ def about():
     return render_template('public/about.html', form=form)
 
 
-@blueprint.route('/panel/')
-def panel():
-    return render_template('panelcontrol/encheader.html')
+@blueprint.route('/upload_task/')
+def upload_task():
+    return render_template('panelcontrol/upload_task.html')
 
 
 @blueprint.route('/table/')

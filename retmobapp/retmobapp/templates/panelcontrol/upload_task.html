@@ -42,15 +42,14 @@
                         </select> 
                     </div>
                     
-                <div class="card-action">
-                        上传压缩文件
-                </div>        
-                    <div class="card-content"> 
+                <div class="card-action">上传压缩文件</div>        
+                <div class="card-content"> 
 
                         <input id="input-705" name="kartik-input-705" type="file" class="file-loading">
                         <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
                         <script>
                             var $input = $("#input-705");
+                            var auth_key;
                             $input.fileinput({
                             uploadUrl: "./upload", // 服务器接收上传文件的方法
                             allowedFileExtensions: ['jpg', 'png', 'gif','zip','ipa','apk'],
@@ -61,7 +60,7 @@
                             maxFileCount: 5,
                             showPreview: true,
                             uploadExtraData: {
-                                    'csrf_token': '{{csrf_token()}}'
+                                'csrf_token': '{{csrf_token()}}'
                             },
                         }).on('filebatchpreupload', function(event, data, id, index) {
                             $('#kv-success-2').html('<h4>上传状态</h4><ul></ul>').hide();
@@ -70,6 +69,8 @@
                             if (obj['ok'] === true) {
                                 // alert("true");
                                 $("#btn_start").attr("disabled", false);    
+                                auth_key = obj['auth_key'];
+
                             }else{
                                 // alert("false");
                                 $("#btn_start").attr("disabled", true);    
@@ -82,14 +83,34 @@
                             });
                             $('#kv-success-2 ul').append(out);
                             $('#kv-success-2').fadeIn('slow');
-                         });
-                        </script>  
+                        });
+                    </script>  
                     </div>
+                <div class="card-content">
+                    <a id="btn_start" class="waves-effect waves-light btn-large" onclick="create_task()"><i class="material-icons left">cloud</i>Create Task</a>
+                </div>
 
-                    <div class="card-action">开始分析</div>
-                    <div class="card-content">
-                        <a id="btn_start" class="waves-effect waves-light btn-large" disabled="true"><i class="material-icons left">cloud</i>Start</a>
-                    </div>
+         <!--            <div class="card-action">开始分析</div>
+                    <div class="card-content"> -->
+
+                    <!-- </div> -->
+                    <script>
+                    function create_task(){
+                        if (typeof(auth_key) == "undefined") {
+                            alert('文件未上传或失败');
+                            return;
+                        }
+                        $.ajax({
+                            type:'POST',
+                            url:'create_task',
+                            data:{'auth_key':auth_key,
+                                    'file_type':'zip'}
+                        });
+
+                    }
+
+
+                    </script>
                 </div>
 
             	<!-- Footer -->
