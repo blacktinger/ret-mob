@@ -23,4 +23,5 @@ def upload():
     return ufile.validate()
 
 # 创建task
-# @blueprint.route()
+# @blueprint.route('/create_task')
+	

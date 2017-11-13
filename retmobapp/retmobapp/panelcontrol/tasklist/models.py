@@ -4,13 +4,16 @@ import datetime as dt
 
 from retmobapp.database import Column, Model, SurrogatePK, db, reference_col, relationship
 from retmobapp.extensions import bcrypt
+from retmobapp.panelcontrol.upload_task import models
 
 class Tasks(SurrogatePK, Model):
 	"""docstring for Tasks"""
 	__tablename__ = 'tasks'
 	task_plantform = Column(db.String(30), nullable=False)
 	task_type = Column(db.String(30), nullable=False)
-	task_uploads_url = Column(db.String(128),nullable=False)
+	# task_uploads_url = Column(db.String(128),nullable=False)
+	filemap_id = reference_col('filemap',nullable=False)
+	filemap = relationship('FileMap',backref='tasks')
 	task_create_time = Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
 	task_status = Column(db.Integer, nullable=False, default=0)
 

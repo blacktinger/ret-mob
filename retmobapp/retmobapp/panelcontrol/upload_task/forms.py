@@ -50,5 +50,8 @@ class UFileForms(FlaskForm):
  	def generate_auth_key(self):
 		return ''.join(random.sample(string.ascii_letters + string.digits, 16))
 
+class CreateTask(FlaskForm):
+	def __init__(self, request):
+		super(CreateTask,self).__init__()
 
 		
