@@ -34,10 +34,10 @@
                     </div>
 
                     <div class="card-content">
-                        <select name="dataTables-example_length" aria-controls="dataTables-example" class="form-control input-sm">
-                            <option value="10">ZIP</option>
-                            <option value="25">IPA</option>
-                            <option value="50">APK</option>
+                        <select id="s1" name="dataTables-example_length" aria-controls="dataTables-example" class="form-control input-sm">
+                            <option value="0">ZIP</option>
+                            <option value="1">IPA</option>
+                            <option value="2">APK</option>
                             <!-- <option value="100"></option> -->
                         </select> 
                     </div>
@@ -72,7 +72,6 @@
                                 auth_key = obj['auth_key'];
 
                             }else{
-                                // alert("false");
                                 $("#btn_start").attr("disabled", true);    
                             }
 
@@ -96,6 +95,8 @@
                     <!-- </div> -->
                     <script>
                     function create_task(){
+                        var s1Sel = document.getElementById('s1').value;
+                        // alert(s1Sel);
                         if (typeof(auth_key) == "undefined") {
                             alert('文件未上传或失败');
                             return;
@@ -103,8 +104,11 @@
                         $.ajax({
                             type:'POST',
                             url:'create_task',
-                            data:{'auth_key':auth_key,
-                                    'file_type':'zip'}
+                            data:{
+                                'csrf_token': '{{csrf_token()}}',
+                                'auth_key':auth_key,
+                                'task_type':Number(s1Sel),
+                                }
                         });
 
                     }

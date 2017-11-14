@@ -3,9 +3,10 @@
 from flask import Blueprint, render_template, request,Flask,current_app
 from werkzeug.utils import secure_filename
 import os
-from forms import PanelForms,UFileForms
+from forms import PanelForms,UFileForms,CreateTask
 from flask import jsonify
 from flask_wtf.csrf import CSRFProtect
+
 
 blueprint = Blueprint('upload_task', __name__, url_prefix='/upload_task', static_folder='../static')
 
@@ -23,5 +24,9 @@ def upload():
     return ufile.validate()
 
 # 创建task
-# @blueprint.route('/create_task')
+@blueprint.route('/create_task',methods=['POST'])
+def create_task():
+	print "create tasks"
+	upload_task = CreateTask(request.form)
+	return upload_task.validate()
 	

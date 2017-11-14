@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
-from flask import render_template, request,Flask,current_app, jsonify
+from flask import render_template, request,Flask,current_app, jsonify,abort
+from retmobapp.panelcontrol.tasklist.models import Tasks
 from models import FileMap
 from werkzeug.utils import secure_filename
+from retmobapp.panelcontrol.tasklist import models
 import os
 import hashlib,random,string
 
@@ -51,7 +53,37 @@ class UFileForms(FlaskForm):
 		return ''.join(random.sample(string.ascii_letters + string.digits, 16))
 
 class CreateTask(FlaskForm):
-	def __init__(self, request):
+
+	def __init__(self,arg):
 		super(CreateTask,self).__init__()
+		self.arg = arg
+
+	def validate(self):
+		# print "===============this is form"
+		try:
+			task_dic = ['ZIP','IPA','APK']
+			plantform_dic = ['Sources', 'iOS', 'Android']
+			task_type_str = request.form['task_type']
+			if task_type_str.isdigit() == False:
+				return abort(403)
+			task_type = task_dic[int(task_type_str)]
+			task_plantform = plantform_dic[int(task_type_str)]
+			auth_key = request.form['auth_key']
+			print auth_key,task_type
+			filemap = FileMap.query.filter_by(auth_key=auth_key).first()
+			if filemap:
+				print filemap.file_url, filemap
+				Tasks.create(task_plantform=task_plantform, task_type=task_type, filemap_id=filemap.id)
+				return jsonify({'ok':True})
+			# def __init__(self, task_plantform, task_type,  filemap_id,**kwargs):
+		except Exception,e:
+			print e
+			return abort(403)
+		# print "===============this is form"
+		return abort(403)
+
+
+
+
 
 		

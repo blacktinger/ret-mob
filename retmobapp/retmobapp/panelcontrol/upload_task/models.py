@@ -9,6 +9,7 @@ from retmobapp.extensions import bcrypt
 class FileMap(SurrogatePK, Model):
 	"""docstring for Tasks"""
 	__tablename__ = 'filemap'
+	id = db.Column(db.Integer,primary_key=True)
 	file_url = Column(db.String(128), nullable=False)
 	auth_key = Column(db.String(30), nullable=False)
 	file_orig_name = Column(db.String(128), nullable=False)

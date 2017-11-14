@@ -20,9 +20,9 @@ class Tasks(SurrogatePK, Model):
 	# def __init__(self, arg):
 	# 	super(Tasks, self).__init__()
 	# 	pass
-	def __init__(self, task_plantform, task_type, task_uploads_url ,**kwargs):
+	def __init__(self, task_plantform, task_type,  filemap_id,**kwargs):
 		"""Create instance."""
-		db.Model.__init__(self, task_plantform=task_plantform, task_type=task_type, task_uploads_url=task_uploads_url ,**kwargs)
+		db.Model.__init__(self, task_plantform=task_plantform, task_type=task_type, filemap_id=filemap_id ,**kwargs)
         # super(Tasks, self).__init__()
  #        # self.arg = arg
 
